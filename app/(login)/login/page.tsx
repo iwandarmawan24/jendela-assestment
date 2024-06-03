@@ -18,6 +18,7 @@ import { Input } from '@/components/ui/input';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
+import { redirect } from 'next/navigation';
 
 const LoginSchema = z.object({
   email: z.string().email(),
@@ -35,9 +36,10 @@ export default function Home() {
       password: 'root',
     },
   });
-  function onSubmit(values: z.infer<typeof LoginSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof LoginSchema>) {
     setIsLoadingSubmit(true);
+    localStorage.setItem('token', JSON.stringify(values));
+    window.location.href = '/';
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-3 p-24">

@@ -1,7 +1,9 @@
+'use client'
+import withAuth from '@/components/auth';
 import Nav from '@/components/layout/nav';
 import React, { ReactNode } from 'react';
 
-export default function Layout({ children }: { children: ReactNode }) {
+function Layout({ children }: { children: ReactNode }) {
   return (
     <React.Fragment>
       <Nav />
@@ -9,3 +11,4 @@ export default function Layout({ children }: { children: ReactNode }) {
     </React.Fragment>
   );
 }
+export default withAuth(Layout);
